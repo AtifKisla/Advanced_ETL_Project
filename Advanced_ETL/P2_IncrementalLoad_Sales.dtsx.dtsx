@@ -1,0 +1,1136 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/17/2025 9:52:13 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-CPG9G0OG"
+  DTS:CreatorName="LAPTOP-CPG9G0OG\ATIF"
+  DTS:DTSID="{3059BD92-ECBF-4F7B-BA04-95902A677437}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.2"
+  DTS:LocaleID="1055"
+  DTS:ObjectName="P2_IncrementalLoad_Sales dtsx"
+  DTS:PackageType="5"
+  DTS:VersionBuild="11"
+  DTS:VersionGUID="{2AB6C2E7-6240-4C59-A5C6-51882D7D4A81}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LAPTOP-CPG9G0OG\SQLEXPRESS.SalesDW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{DBED6497-E4E1-42B4-AE3C-92594FCD7EC6}"
+      DTS:ObjectName="LAPTOP-CPG9G0OG\SQLEXPRESS.SalesDW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=LAPTOP-CPG9G0OG\SQLEXPRESS;Initial Catalog=SalesDW;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-P2_IncrementalLoad_Sales dtsx-{DBED6497-E4E1-42B4-AE3C-92594FCD7EC6}LAPTOP-CPG9G0OG\SQLEXPRESS.SalesDW;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Incremental Load - Sales (CDC Simulation)"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{840FAB6C-F3BA-4660-9EA8-C9B678014E9C}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Incremental Load - Sales (CDC Simulation)"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Incremental Load - Sales (CDC Simulation)\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Incremental Load - Sales (CDC Simulation)\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\Conditional Split.Inputs[Conditional Split Input].Columns[Quantity]"
+                      cachedDataType="i4"
+                      cachedName="Quantity"
+                      lineageId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Output].Columns[Quantity]" />
+                    <inputColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\Conditional Split.Inputs[Conditional Split Input].Columns[SalesAmount]"
+                      cachedDataType="numeric"
+                      cachedName="SalesAmount"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      lineageId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Output].Columns[SalesAmount]" />
+                    <inputColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\Conditional Split.Inputs[Conditional Split Input].Columns[Quantity_Lookup]"
+                      cachedDataType="i4"
+                      cachedName="Quantity_Lookup"
+                      lineageId="Package\Incremental Load - Sales (CDC Simulation)\Lookup.Outputs[Lookup Match Output].Columns[Quantity_Lookup]" />
+                    <inputColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\Conditional Split.Inputs[Conditional Split Input].Columns[SalesAmount_Lookup]"
+                      cachedDataType="numeric"
+                      cachedName="SalesAmount_Lookup"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      lineageId="Package\Incremental Load - Sales (CDC Simulation)\Lookup.Outputs[Lookup Match Output].Columns[SalesAmount_Lookup]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Incremental Load - Sales (CDC Simulation)\Conditional Split.Outputs[Update_Records]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Update_Records"
+                  synchronousInputId="Package\Incremental Load - Sales (CDC Simulation)\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">#{Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Output].Columns[Quantity]} != #{Package\Incremental Load - Sales (CDC Simulation)\Lookup.Outputs[Lookup Match Output].Columns[Quantity_Lookup]} || #{Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Output].Columns[SalesAmount]} != #{Package\Incremental Load - Sales (CDC Simulation)\Lookup.Outputs[Lookup Match Output].Columns[SalesAmount_Lookup]}</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">Quantity != Quantity_Lookup || SalesAmount != SalesAmount_Lookup</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Incremental Load - Sales (CDC Simulation)\Conditional Split.Outputs[Unchanged_Records]"
+                  description="Output 2 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Unchanged_Records"
+                  synchronousInputId="Package\Incremental Load - Sales (CDC Simulation)\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">#{Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Output].Columns[Quantity]} == #{Package\Incremental Load - Sales (CDC Simulation)\Lookup.Outputs[Lookup Match Output].Columns[Quantity_Lookup]} &amp;&amp; #{Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Output].Columns[SalesAmount]} == #{Package\Incremental Load - Sales (CDC Simulation)\Lookup.Outputs[Lookup Match Output].Columns[SalesAmount_Lookup]}</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">Quantity == Quantity_Lookup &amp;&amp; SalesAmount == SalesAmount_Lookup</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">1</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Incremental Load - Sales (CDC Simulation)\Conditional Split.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\Incremental Load - Sales (CDC Simulation)\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Incremental Load - Sales (CDC Simulation)\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Incremental Load - Sales (CDC Simulation)\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Incremental Load - Sales (CDC Simulation)\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Incremental Load - Sales (CDC Simulation)\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Incremental Load - Sales (CDC Simulation)\Insert_New_Records"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Insert_New_Records"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DW_ValidSales]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1254</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Incremental Load - Sales (CDC Simulation)\Insert_New_Records.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-CPG9G0OG\SQLEXPRESS.SalesDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-CPG9G0OG\SQLEXPRESS.SalesDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Incremental Load - Sales (CDC Simulation)\Insert_New_Records.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\Insert_New_Records.Inputs[OLE DB Destination Input].Columns[SalesID]"
+                      cachedDataType="i4"
+                      cachedName="SalesID"
+                      externalMetadataColumnId="Package\Incremental Load - Sales (CDC Simulation)\Insert_New_Records.Inputs[OLE DB Destination Input].ExternalColumns[SaleID]"
+                      lineageId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Output].Columns[SalesID]" />
+                    <inputColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\Insert_New_Records.Inputs[OLE DB Destination Input].Columns[Quantity]"
+                      cachedDataType="i4"
+                      cachedName="Quantity"
+                      externalMetadataColumnId="Package\Incremental Load - Sales (CDC Simulation)\Insert_New_Records.Inputs[OLE DB Destination Input].ExternalColumns[Quantity]"
+                      lineageId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Output].Columns[Quantity]" />
+                    <inputColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\Insert_New_Records.Inputs[OLE DB Destination Input].Columns[SalesAmount]"
+                      cachedDataType="numeric"
+                      cachedName="SalesAmount"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Incremental Load - Sales (CDC Simulation)\Insert_New_Records.Inputs[OLE DB Destination Input].ExternalColumns[Price]"
+                      lineageId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Output].Columns[SalesAmount]" />
+                    <inputColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\Insert_New_Records.Inputs[OLE DB Destination Input].Columns[ModifiedDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ModifiedDate"
+                      externalMetadataColumnId="Package\Incremental Load - Sales (CDC Simulation)\Insert_New_Records.Inputs[OLE DB Destination Input].ExternalColumns[SaleDate]"
+                      lineageId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Output].Columns[ModifiedDate]" />
+                    <inputColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\Insert_New_Records.Inputs[OLE DB Destination Input].Columns[ProductID]"
+                      cachedDataType="i4"
+                      cachedName="ProductID"
+                      externalMetadataColumnId="Package\Incremental Load - Sales (CDC Simulation)\Insert_New_Records.Inputs[OLE DB Destination Input].ExternalColumns[Product]"
+                      lineageId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Output].Columns[ProductID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\Insert_New_Records.Inputs[OLE DB Destination Input].ExternalColumns[SaleID]"
+                      dataType="i4"
+                      name="SaleID" />
+                    <externalMetadataColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\Insert_New_Records.Inputs[OLE DB Destination Input].ExternalColumns[SaleDate]"
+                      dataType="dbDate"
+                      name="SaleDate" />
+                    <externalMetadataColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\Insert_New_Records.Inputs[OLE DB Destination Input].ExternalColumns[Product]"
+                      codePage="1254"
+                      dataType="str"
+                      length="100"
+                      name="Product" />
+                    <externalMetadataColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\Insert_New_Records.Inputs[OLE DB Destination Input].ExternalColumns[Quantity]"
+                      dataType="i4"
+                      name="Quantity" />
+                    <externalMetadataColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\Insert_New_Records.Inputs[OLE DB Destination Input].ExternalColumns[Price]"
+                      dataType="numeric"
+                      name="Price"
+                      precision="10"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Incremental Load - Sales (CDC Simulation)\Insert_New_Records.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Incremental Load - Sales (CDC Simulation)\Insert_New_Records.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\Insert_New_Records.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Incremental Load - Sales (CDC Simulation)\Insert_New_Records.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\Insert_New_Records.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Incremental Load - Sales (CDC Simulation)\Insert_New_Records.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Incremental Load - Sales (CDC Simulation)\Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DW_ValidSales]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DW_ValidSales]) [refTable]
+where [refTable].[SaleID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="SaleID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="SaleDate" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Product" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1254"/&gt;&lt;referenceColumn name="Quantity" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Price" dataType="DT_NUMERIC" length="0" precision="10" scale="2" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Output].Columns[SalesID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1254</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Incremental Load - Sales (CDC Simulation)\Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-CPG9G0OG\SQLEXPRESS.SalesDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-CPG9G0OG\SQLEXPRESS.SalesDW]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Incremental Load - Sales (CDC Simulation)\Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\Lookup.Inputs[Lookup Input].Columns[SalesID]"
+                      cachedDataType="i4"
+                      cachedName="SalesID"
+                      lineageId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Output].Columns[SalesID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">SaleID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Incremental Load - Sales (CDC Simulation)\Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Incremental Load - Sales (CDC Simulation)\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\Lookup.Outputs[Lookup Match Output].Columns[SaleID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Incremental Load - Sales (CDC Simulation)\Lookup.Outputs[Lookup Match Output].Columns[SaleID]"
+                      name="SaleID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">SaleID</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\Lookup.Outputs[Lookup Match Output].Columns[Quantity_Lookup]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Incremental Load - Sales (CDC Simulation)\Lookup.Outputs[Lookup Match Output].Columns[Quantity_Lookup]"
+                      name="Quantity_Lookup"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Quantity</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\Lookup.Outputs[Lookup Match Output].Columns[SalesAmount_Lookup]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Incremental Load - Sales (CDC Simulation)\Lookup.Outputs[Lookup Match Output].Columns[SalesAmount_Lookup]"
+                      name="SalesAmount_Lookup"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Price</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Incremental Load - Sales (CDC Simulation)\Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Incremental Load - Sales (CDC Simulation)\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Incremental Load - Sales (CDC Simulation)\Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Incremental Load - Sales (CDC Simulation)\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Incremental Load - Sales (CDC Simulation)\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Incremental Load - Sales (CDC Simulation)\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Incremental Load - Sales (CDC Simulation)\OLE DB Command"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLE DB Command"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE dbo.DW_ValidSales
+SET 
+    Quantity = ?, 
+    Price = ?, 
+    SaleDate = ?
+WHERE SaleID = ?
+</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1254</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Incremental Load - Sales (CDC Simulation)\OLE DB Command.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-CPG9G0OG\SQLEXPRESS.SalesDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-CPG9G0OG\SQLEXPRESS.SalesDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Incremental Load - Sales (CDC Simulation)\OLE DB Command.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\OLE DB Command.Inputs[OLE DB Command Input].Columns[Quantity]"
+                      cachedDataType="i4"
+                      cachedName="Quantity"
+                      externalMetadataColumnId="Package\Incremental Load - Sales (CDC Simulation)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Output].Columns[Quantity]" />
+                    <inputColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\OLE DB Command.Inputs[OLE DB Command Input].Columns[SalesAmount]"
+                      cachedDataType="numeric"
+                      cachedName="SalesAmount"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Incremental Load - Sales (CDC Simulation)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Output].Columns[SalesAmount]" />
+                    <inputColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\OLE DB Command.Inputs[OLE DB Command Input].Columns[ModifiedDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ModifiedDate"
+                      externalMetadataColumnId="Package\Incremental Load - Sales (CDC Simulation)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Output].Columns[ModifiedDate]" />
+                    <inputColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\OLE DB Command.Inputs[OLE DB Command Input].Columns[SaleID]"
+                      cachedDataType="i4"
+                      cachedName="SaleID"
+                      externalMetadataColumnId="Package\Incremental Load - Sales (CDC Simulation)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      lineageId="Package\Incremental Load - Sales (CDC Simulation)\Lookup.Outputs[Lookup Match Output].Columns[SaleID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="i4"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="numeric"
+                      name="Param_1"
+                      precision="10"
+                      scale="2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      dataType="dbDate"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      dataType="i4"
+                      name="Param_3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Incremental Load - Sales (CDC Simulation)\OLE DB Command.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Incremental Load - Sales (CDC Simulation)\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Incremental Load - Sales (CDC Simulation)\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Incremental Load - Sales (CDC Simulation)\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Incremental Load - Sales (CDC Simulation)\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Incremental Load - Sales (CDC Simulation)\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Sales_Staging_Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[stg].[Sales_2025]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1254</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-CPG9G0OG\SQLEXPRESS.SalesDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-CPG9G0OG\SQLEXPRESS.SalesDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Output].Columns[SalesID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Output].ExternalColumns[SalesID]"
+                      lineageId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Output].Columns[SalesID]"
+                      name="SalesID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Output].Columns[ProductID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
+                      lineageId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Output].Columns[ProductID]"
+                      name="ProductID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Output].Columns[Quantity]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Output].ExternalColumns[Quantity]"
+                      lineageId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Output].Columns[Quantity]"
+                      name="Quantity"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Output].Columns[SalesAmount]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Output].ExternalColumns[SalesAmount]"
+                      lineageId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Output].Columns[SalesAmount]"
+                      name="SalesAmount"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Output].Columns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Output].ExternalColumns[ModifiedDate]"
+                      lineageId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Output].Columns[ModifiedDate]"
+                      name="ModifiedDate"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Output].ExternalColumns[SalesID]"
+                      dataType="i4"
+                      name="SalesID" />
+                    <externalMetadataColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
+                      dataType="i4"
+                      name="ProductID" />
+                    <externalMetadataColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Output].ExternalColumns[Quantity]"
+                      dataType="i4"
+                      name="Quantity" />
+                    <externalMetadataColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Output].ExternalColumns[SalesAmount]"
+                      dataType="numeric"
+                      name="SalesAmount"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Output].ExternalColumns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      name="ModifiedDate" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Error Output].Columns[SalesID]"
+                      dataType="i4"
+                      lineageId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Error Output].Columns[SalesID]"
+                      name="SalesID" />
+                    <outputColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Error Output].Columns[ProductID]"
+                      dataType="i4"
+                      lineageId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Error Output].Columns[ProductID]"
+                      name="ProductID" />
+                    <outputColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Error Output].Columns[Quantity]"
+                      dataType="i4"
+                      lineageId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Error Output].Columns[Quantity]"
+                      name="Quantity" />
+                    <outputColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Error Output].Columns[SalesAmount]"
+                      dataType="numeric"
+                      lineageId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Error Output].Columns[SalesAmount]"
+                      name="SalesAmount"
+                      precision="10"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Error Output].Columns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Error Output].Columns[ModifiedDate]"
+                      name="ModifiedDate" />
+                    <outputColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Incremental Load - Sales (CDC Simulation).Paths[Lookup Match Output]"
+              endId="Package\Incremental Load - Sales (CDC Simulation)\Conditional Split.Inputs[Conditional Split Input]"
+              name="Lookup Match Output"
+              startId="Package\Incremental Load - Sales (CDC Simulation)\Lookup.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Incremental Load - Sales (CDC Simulation).Paths[Lookup No Match Output]"
+              endId="Package\Incremental Load - Sales (CDC Simulation)\Insert_New_Records.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\Incremental Load - Sales (CDC Simulation)\Lookup.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Incremental Load - Sales (CDC Simulation).Paths[OLE DB Source Output]"
+              endId="Package\Incremental Load - Sales (CDC Simulation)\Lookup.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Incremental Load - Sales (CDC Simulation).Paths[Update_Records]"
+              endId="Package\Incremental Load - Sales (CDC Simulation)\OLE DB Command.Inputs[OLE DB Command Input]"
+              name="Update_Records"
+              startId="Package\Incremental Load - Sales (CDC Simulation)\Conditional Split.Outputs[Update_Records]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="277.6,41.6"
+          Id="Package\Incremental Load - Sales (CDC Simulation)"
+          TopLeft="83.3333287802009,38.9999997287989" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Incremental Load - Sales (CDC Simulation)">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="184,41.6"
+          Id="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source"
+          TopLeft="161.66665783359,77.9999994575978" />
+        <NodeLayout
+          Size="112.8,41.6"
+          Id="Package\Incremental Load - Sales (CDC Simulation)\Lookup"
+          TopLeft="211.66665510171,196.733331965274" />
+        <NodeLayout
+          Size="153.6,41.6"
+          Id="Package\Incremental Load - Sales (CDC Simulation)\Conditional Split"
+          TopLeft="153.33332495557,353.59999754111" />
+        <EdgeLayout
+          Id="Package\Incremental Load - Sales (CDC Simulation).Paths[OLE DB Source Output]"
+          TopLeft="253.66665783359,119.599999457598">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="14.3999972681202,77.1333325076766"
+              Start="0,0"
+              End="14.3999972681202,69.6333325076766">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.5666662538383" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,34.5666662538383"
+                    Point2="0,38.5666662538383"
+                    Point3="4,38.5666662538383" />
+                  <mssgle:LineSegment
+                    End="10.3999972681202,38.5666662538383" />
+                  <mssgle:CubicBezierSegment
+                    Point1="10.3999972681202,38.5666662538383"
+                    Point2="14.3999972681202,38.5666662538383"
+                    Point3="14.3999972681202,42.5666662538383" />
+                  <mssgle:LineSegment
+                    End="14.3999972681202,69.6333325076766" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Incremental Load - Sales (CDC Simulation).Paths[Lookup Match Output]"
+          TopLeft="250.599988435043,238.333331965274">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-20.4666634794735,115.266665575836"
+              Start="0,0"
+              End="-20.4666634794735,107.766665575836">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.0739389484532" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,43.0739389484532"
+                    Point2="0,47.0739389484532"
+                    Point3="-4,47.0739389484532" />
+                  <mssgle:LineSegment
+                    End="-16.4666634794735,47.0739389484532" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-16.4666634794735,47.0739389484532"
+                    Point2="-20.4666634794735,47.0739389484532"
+                    Point3="-20.4666634794735,51.0739389484532" />
+                  <mssgle:LineSegment
+                    End="-20.4666634794735,107.766665575836" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-58.4247184584867,52.0739389484532,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="175.2,41.6"
+          Id="Package\Incremental Load - Sales (CDC Simulation)\Insert_New_Records"
+          TopLeft="339.166648135418,307.666664527191" />
+        <EdgeLayout
+          Id="Package\Incremental Load - Sales (CDC Simulation).Paths[Lookup No Match Output]"
+          TopLeft="285.533321768377,238.333331965274">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="141.233326367041,69.3333325619171"
+              Start="0,0"
+              End="141.233326367041,61.8333325619171">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.3151512001116" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.3151512001116"
+                    Point2="0,28.3151512001116"
+                    Point3="4,28.3151512001116" />
+                  <mssgle:LineSegment
+                    End="137.233326367041,28.3151512001116" />
+                  <mssgle:CubicBezierSegment
+                    Point1="137.233326367041,28.3151512001116"
+                    Point2="141.233326367041,28.3151512001116"
+                    Point3="141.233326367041,32.3151512001116" />
+                  <mssgle:LineSegment
+                    End="141.233326367041,61.8333325619171" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="14.8102764647706,33.3151512001116,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="167.2,41.6"
+          Id="Package\Incremental Load - Sales (CDC Simulation)\OLE DB Command"
+          TopLeft="68.3333295997648,449.799996872147" />
+        <EdgeLayout
+          Id="Package\Incremental Load - Sales (CDC Simulation).Paths[Update_Records]"
+          TopLeft="230.13332495557,395.19999754111">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-78.1999953558051,54.5999993310371"
+              Start="0,0"
+              End="-78.1999953558051,47.0999993310371">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.2999996655186" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.2999996655186"
+                    Point2="0,27.2999996655186"
+                    Point3="-4,27.2999996655186" />
+                  <mssgle:LineSegment
+                    End="-74.1999953558051,27.2999996655186" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-74.1999953558051,27.2999996655186"
+                    Point2="-78.1999953558051,27.2999996655186"
+                    Point3="-78.1999953558051,31.2999996655186" />
+                  <mssgle:LineSegment
+                    End="-78.1999953558051,47.0999993310371" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-75.6965211154026,32.2999996655186,73.193046875,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Incremental Load - Sales (CDC Simulation)\Sales_Staging_Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Incremental Load - Sales (CDC Simulation)\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DW_ValidSales]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Incremental Load - Sales (CDC Simulation)\Insert_New_Records">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

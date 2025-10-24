@@ -1,0 +1,3398 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/24/2025 1:53:22 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-CPG9G0OG"
+  DTS:CreatorName="LAPTOP-CPG9G0OG\ATIF"
+  DTS:DTSID="{1AAC10F3-A41A-436C-961A-85943BCA144D}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.2"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="P4 – Sales Data Mart  Dim–Fact Model"
+  DTS:PackageType="5"
+  DTS:VersionBuild="26"
+  DTS:VersionGUID="{56B4661E-2859-4156-8880-35C50CA4A3C5}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LAPTOP-CPG9G0OG\SQLEXPRESS.SalesDW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{1F57549E-7695-47EF-AA98-7D3CCEEB779B}"
+      DTS:ObjectName="LAPTOP-CPG9G0OG\SQLEXPRESS.SalesDW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=LAPTOP-CPG9G0OG\SQLEXPRESS;Initial Catalog=SalesDW;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-P4 – Sales Data Mart  Dim–Fact Model-{1F57549E-7695-47EF-AA98-7D3CCEEB779B}LAPTOP-CPG9G0OG\SQLEXPRESS.SalesDW;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F8BED87B-66CB-4E60-B43C-E9096FA4327C}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="CurrentDate">
+      <DTS:VariableValue
+        DTS:DataType="7">10/24/2025 2:53:00 PM</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT – Dim_Date"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{3E541EE8-30D0-4D6E-870C-986168837417}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT – Dim_Date"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT – Dim_Date\DEST – Dim_Date"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DEST – Dim_Date"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Dim_Date]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT – Dim_Date\DEST – Dim_Date.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-CPG9G0OG\SQLEXPRESS.SalesDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-CPG9G0OG\SQLEXPRESS.SalesDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT – Dim_Date\DEST – Dim_Date.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT – Dim_Date\DEST – Dim_Date.Inputs[OLE DB Destination Input].Columns[Month]"
+                      cachedDataType="i4"
+                      cachedName="Month"
+                      externalMetadataColumnId="Package\DFT – Dim_Date\DEST – Dim_Date.Inputs[OLE DB Destination Input].ExternalColumns[Month]"
+                      lineageId="Package\DFT – Dim_Date\DRV – Build Date Attributes.Outputs[Derived Column Output].Columns[Month]" />
+                    <inputColumn
+                      refId="Package\DFT – Dim_Date\DEST – Dim_Date.Inputs[OLE DB Destination Input].Columns[Year]"
+                      cachedDataType="i4"
+                      cachedName="Year"
+                      externalMetadataColumnId="Package\DFT – Dim_Date\DEST – Dim_Date.Inputs[OLE DB Destination Input].ExternalColumns[Year]"
+                      lineageId="Package\DFT – Dim_Date\DRV – Build Date Attributes.Outputs[Derived Column Output].Columns[Year]" />
+                    <inputColumn
+                      refId="Package\DFT – Dim_Date\DEST – Dim_Date.Inputs[OLE DB Destination Input].Columns[DateKey]"
+                      cachedDataType="i4"
+                      cachedName="DateKey"
+                      externalMetadataColumnId="Package\DFT – Dim_Date\DEST – Dim_Date.Inputs[OLE DB Destination Input].ExternalColumns[DateKey]"
+                      lineageId="Package\DFT – Dim_Date\DRV – Build Date Attributes.Outputs[Derived Column Output].Columns[DateKey]" />
+                    <inputColumn
+                      refId="Package\DFT – Dim_Date\DEST – Dim_Date.Inputs[OLE DB Destination Input].Columns[Quarter]"
+                      cachedDataType="i4"
+                      cachedName="Quarter"
+                      externalMetadataColumnId="Package\DFT – Dim_Date\DEST – Dim_Date.Inputs[OLE DB Destination Input].ExternalColumns[Quarter]"
+                      lineageId="Package\DFT – Dim_Date\DRV – Build Date Attributes.Outputs[Derived Column Output].Columns[Quarter]" />
+                    <inputColumn
+                      refId="Package\DFT – Dim_Date\DEST – Dim_Date.Inputs[OLE DB Destination Input].Columns[SaleDate]"
+                      cachedDataType="dbDate"
+                      cachedName="SaleDate"
+                      externalMetadataColumnId="Package\DFT – Dim_Date\DEST – Dim_Date.Inputs[OLE DB Destination Input].ExternalColumns[FullDate]"
+                      lineageId="Package\DFT – Dim_Date\SRC – DW_ValidSales (Dates).Outputs[OLE DB Source Output].Columns[SaleDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT – Dim_Date\DEST – Dim_Date.Inputs[OLE DB Destination Input].ExternalColumns[DateKey]"
+                      dataType="i4"
+                      name="DateKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT – Dim_Date\DEST – Dim_Date.Inputs[OLE DB Destination Input].ExternalColumns[FullDate]"
+                      dataType="dbDate"
+                      name="FullDate" />
+                    <externalMetadataColumn
+                      refId="Package\DFT – Dim_Date\DEST – Dim_Date.Inputs[OLE DB Destination Input].ExternalColumns[Year]"
+                      dataType="i4"
+                      name="Year" />
+                    <externalMetadataColumn
+                      refId="Package\DFT – Dim_Date\DEST – Dim_Date.Inputs[OLE DB Destination Input].ExternalColumns[Month]"
+                      dataType="i4"
+                      name="Month" />
+                    <externalMetadataColumn
+                      refId="Package\DFT – Dim_Date\DEST – Dim_Date.Inputs[OLE DB Destination Input].ExternalColumns[MonthName]"
+                      dataType="wstr"
+                      length="20"
+                      name="MonthName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT – Dim_Date\DEST – Dim_Date.Inputs[OLE DB Destination Input].ExternalColumns[Quarter]"
+                      dataType="i4"
+                      name="Quarter" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT – Dim_Date\DEST – Dim_Date.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT – Dim_Date\DEST – Dim_Date.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT – Dim_Date\DEST – Dim_Date.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT – Dim_Date\DEST – Dim_Date.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT – Dim_Date\DEST – Dim_Date.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT – Dim_Date\DEST – Dim_Date.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT – Dim_Date\DRV – Build Date Attributes"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="DRV – Build Date Attributes"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT – Dim_Date\DRV – Build Date Attributes.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT – Dim_Date\DRV – Build Date Attributes.Inputs[Derived Column Input].Columns[SaleDate]"
+                      cachedDataType="dbDate"
+                      cachedName="SaleDate"
+                      lineageId="Package\DFT – Dim_Date\SRC – DW_ValidSales (Dates).Outputs[OLE DB Source Output].Columns[SaleDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT – Dim_Date\DRV – Build Date Attributes.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DFT – Dim_Date\DRV – Build Date Attributes.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT – Dim_Date\DRV – Build Date Attributes.Outputs[Derived Column Output].Columns[Year]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DFT – Dim_Date\DRV – Build Date Attributes.Outputs[Derived Column Output].Columns[Year]"
+                      name="Year"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[YEAR](#{Package\DFT – Dim_Date\SRC – DW_ValidSales (Dates).Outputs[OLE DB Source Output].Columns[SaleDate]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">YEAR(SaleDate)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT – Dim_Date\DRV – Build Date Attributes.Outputs[Derived Column Output].Columns[Month]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DFT – Dim_Date\DRV – Build Date Attributes.Outputs[Derived Column Output].Columns[Month]"
+                      name="Month"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[MONTH](#{Package\DFT – Dim_Date\SRC – DW_ValidSales (Dates).Outputs[OLE DB Source Output].Columns[SaleDate]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">MONTH(SaleDate)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT – Dim_Date\DRV – Build Date Attributes.Outputs[Derived Column Output].Columns[Quarter]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DFT – Dim_Date\DRV – Build Date Attributes.Outputs[Derived Column Output].Columns[Quarter]"
+                      name="Quarter"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[DATEPART]("q",#{Package\DFT – Dim_Date\SRC – DW_ValidSales (Dates).Outputs[OLE DB Source Output].Columns[SaleDate]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">DATEPART("q",SaleDate)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT – Dim_Date\DRV – Build Date Attributes.Outputs[Derived Column Output].Columns[DateKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DFT – Dim_Date\DRV – Build Date Attributes.Outputs[Derived Column Output].Columns[DateKey]"
+                      name="DateKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">([YEAR](#{Package\DFT – Dim_Date\SRC – DW_ValidSales (Dates).Outputs[OLE DB Source Output].Columns[SaleDate]}) * 10000) + ([MONTH](#{Package\DFT – Dim_Date\SRC – DW_ValidSales (Dates).Outputs[OLE DB Source Output].Columns[SaleDate]}) * 100) + [DAY](#{Package\DFT – Dim_Date\SRC – DW_ValidSales (Dates).Outputs[OLE DB Source Output].Columns[SaleDate]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(YEAR(SaleDate) * 10000) + (MONTH(SaleDate) * 100) + DAY(SaleDate)</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT – Dim_Date\DRV – Build Date Attributes.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DFT – Dim_Date\DRV – Build Date Attributes.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT – Dim_Date\DRV – Build Date Attributes.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT – Dim_Date\DRV – Build Date Attributes.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT – Dim_Date\DRV – Build Date Attributes.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT – Dim_Date\DRV – Build Date Attributes.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT – Dim_Date\SRC – DW_ValidSales (Dates)"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="SRC – DW_ValidSales (Dates)"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DW_ValidSales]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DISTINCT SaleDate
+FROM dbo.DW_ValidSales
+WHERE SaleDate IS NOT NULL;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT – Dim_Date\SRC – DW_ValidSales (Dates).Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-CPG9G0OG\SQLEXPRESS.SalesDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-CPG9G0OG\SQLEXPRESS.SalesDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT – Dim_Date\SRC – DW_ValidSales (Dates).Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT – Dim_Date\SRC – DW_ValidSales (Dates).Outputs[OLE DB Source Output].Columns[SaleDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT – Dim_Date\SRC – DW_ValidSales (Dates).Outputs[OLE DB Source Output].ExternalColumns[SaleDate]"
+                      lineageId="Package\DFT – Dim_Date\SRC – DW_ValidSales (Dates).Outputs[OLE DB Source Output].Columns[SaleDate]"
+                      name="SaleDate"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT – Dim_Date\SRC – DW_ValidSales (Dates).Outputs[OLE DB Source Output].ExternalColumns[SaleDate]"
+                      dataType="dbDate"
+                      name="SaleDate" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT – Dim_Date\SRC – DW_ValidSales (Dates).Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT – Dim_Date\SRC – DW_ValidSales (Dates).Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT – Dim_Date\SRC – DW_ValidSales (Dates).Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT – Dim_Date\SRC – DW_ValidSales (Dates).Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT – Dim_Date\SRC – DW_ValidSales (Dates).Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\DFT – Dim_Date\SRC – DW_ValidSales (Dates).Outputs[OLE DB Source Error Output].Columns[SaleDate]"
+                      dataType="dbDate"
+                      lineageId="Package\DFT – Dim_Date\SRC – DW_ValidSales (Dates).Outputs[OLE DB Source Error Output].Columns[SaleDate]"
+                      name="SaleDate" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT – Dim_Date.Paths[Derived Column Output]"
+              endId="Package\DFT – Dim_Date\DEST – Dim_Date.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\DFT – Dim_Date\DRV – Build Date Attributes.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DFT – Dim_Date.Paths[OLE DB Source Output]"
+              endId="Package\DFT – Dim_Date\DRV – Build Date Attributes.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\DFT – Dim_Date\SRC – DW_ValidSales (Dates).Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\DFT – Dim_Product (SCD)"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{B7D64CFA-DAFC-4182-909B-BFD2F069F6C4}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT – Dim_Product (SCD)"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT – Dim_Product (SCD)\DC – Convert Product to Unicode"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="DC – Convert Product to Unicode"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT – Dim_Product (SCD)\DC – Convert Product to Unicode.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\DC – Convert Product to Unicode.Inputs[Data Conversion Input].Columns[Product]"
+                      cachedCodepage="1254"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Product"
+                      lineageId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Output].Columns[Product]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT – Dim_Product (SCD)\DC – Convert Product to Unicode.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\DFT – Dim_Product (SCD)\DC – Convert Product to Unicode.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\DC – Convert Product to Unicode.Outputs[Data Conversion Output].Columns[Product_Unicode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\DFT – Dim_Product (SCD)\DC – Convert Product to Unicode.Outputs[Data Conversion Output].Columns[Product_Unicode]"
+                      name="Product_Unicode"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Output].Columns[Product]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT – Dim_Product (SCD)\DC – Convert Product to Unicode.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\DFT – Dim_Product (SCD)\DC – Convert Product to Unicode.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\DC – Convert Product to Unicode.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT – Dim_Product (SCD)\DC – Convert Product to Unicode.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\DC – Convert Product to Unicode.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT – Dim_Product (SCD)\DC – Convert Product to Unicode.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT – Dim_Product (SCD)\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT – Dim_Product (SCD)\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT – Dim_Product (SCD)\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DFT – Dim_Product (SCD)\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\Derived Column.Outputs[Derived Column Output].Columns[EndDate]"
+                      dataType="dbTimeStamp"
+                      description="EndDate"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DFT – Dim_Product (SCD)\Derived Column.Outputs[Derived Column Output].Columns[EndDate]"
+                      name="EndDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_DBTIMESTAMP)(@[User::CurrentDate])</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_DBTIMESTAMP)(@[User::CurrentDate])</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT – Dim_Product (SCD)\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DFT – Dim_Product (SCD)\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT – Dim_Product (SCD)\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT – Dim_Product (SCD)\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT – Dim_Product (SCD)\Derived Column 1"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column 1"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT – Dim_Product (SCD)\Derived Column 1.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT – Dim_Product (SCD)\Derived Column 1.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DFT – Dim_Product (SCD)\Derived Column 1.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\Derived Column 1.Outputs[Derived Column Output].Columns[StartDate]"
+                      dataType="dbTimeStamp"
+                      description="StartDate"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DFT – Dim_Product (SCD)\Derived Column 1.Outputs[Derived Column Output].Columns[StartDate]"
+                      name="StartDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_DBTIMESTAMP)(@[User::CurrentDate])</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_DBTIMESTAMP)(@[User::CurrentDate])</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT – Dim_Product (SCD)\Derived Column 1.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DFT – Dim_Product (SCD)\Derived Column 1.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT – Dim_Product (SCD)\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT – Dim_Product (SCD)\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT – Dim_Product (SCD)\DRV – Add ProductCategory"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="DRV – Add ProductCategory"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT – Dim_Product (SCD)\DRV – Add ProductCategory.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT – Dim_Product (SCD)\DRV – Add ProductCategory.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DFT – Dim_Product (SCD)\DRV – Add ProductCategory.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\DRV – Add ProductCategory.Outputs[Derived Column Output].Columns[ProductCategory]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="7"
+                      lineageId="Package\DFT – Dim_Product (SCD)\DRV – Add ProductCategory.Outputs[Derived Column Output].Columns[ProductCategory]"
+                      name="ProductCategory"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"General"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"General"</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT – Dim_Product (SCD)\DRV – Add ProductCategory.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DFT – Dim_Product (SCD)\DRV – Add ProductCategory.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\DRV – Add ProductCategory.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT – Dim_Product (SCD)\DRV – Add ProductCategory.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\DRV – Add ProductCategory.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT – Dim_Product (SCD)\DRV – Add ProductCategory.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT – Dim_Product (SCD)\Insert Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Insert Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Dim_Product]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT – Dim_Product (SCD)\Insert Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-CPG9G0OG\SQLEXPRESS.SalesDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-CPG9G0OG\SQLEXPRESS.SalesDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT – Dim_Product (SCD)\Insert Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\Insert Destination.Inputs[OLE DB Destination Input].Columns[Product_Unicode]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="Product_Unicode"
+                      externalMetadataColumnId="Package\DFT – Dim_Product (SCD)\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Product_Unicode]"
+                      lineageId="Package\DFT – Dim_Product (SCD)\Union All.Outputs[Union All Output 1].Columns[Product_Unicode]" />
+                    <inputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\Insert Destination.Inputs[OLE DB Destination Input].Columns[StartDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="StartDate"
+                      externalMetadataColumnId="Package\DFT – Dim_Product (SCD)\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[StartDate]"
+                      lineageId="Package\DFT – Dim_Product (SCD)\Derived Column 1.Outputs[Derived Column Output].Columns[StartDate]" />
+                    <inputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\Insert Destination.Inputs[OLE DB Destination Input].Columns[ProductCategory]"
+                      cachedDataType="wstr"
+                      cachedLength="7"
+                      cachedName="ProductCategory"
+                      externalMetadataColumnId="Package\DFT – Dim_Product (SCD)\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProductCategory]"
+                      lineageId="Package\DFT – Dim_Product (SCD)\Union All.Outputs[Union All Output 1].Columns[ProductCategory]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT – Dim_Product (SCD)\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProductKey]"
+                      dataType="i4"
+                      name="ProductKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT – Dim_Product (SCD)\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Product_Unicode]"
+                      dataType="wstr"
+                      length="100"
+                      name="Product_Unicode" />
+                    <externalMetadataColumn
+                      refId="Package\DFT – Dim_Product (SCD)\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[StartDate]"
+                      dataType="dbTimeStamp"
+                      name="StartDate" />
+                    <externalMetadataColumn
+                      refId="Package\DFT – Dim_Product (SCD)\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[EndDate]"
+                      dataType="dbTimeStamp"
+                      name="EndDate" />
+                    <externalMetadataColumn
+                      refId="Package\DFT – Dim_Product (SCD)\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[IsCurrent]"
+                      dataType="bool"
+                      name="IsCurrent" />
+                    <externalMetadataColumn
+                      refId="Package\DFT – Dim_Product (SCD)\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProductName]"
+                      dataType="wstr"
+                      length="100"
+                      name="ProductName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT – Dim_Product (SCD)\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProductCategory]"
+                      dataType="wstr"
+                      length="100"
+                      name="ProductCategory" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT – Dim_Product (SCD)\Insert Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT – Dim_Product (SCD)\Insert Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT – Dim_Product (SCD)\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT – Dim_Product (SCD)\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT – Dim_Product (SCD)\OLE DB Command"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLE DB Command"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [dbo].[Dim_Product] SET [EndDate] = ? WHERE [Product_Unicode] = ? AND [EndDate] IS NULL</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT – Dim_Product (SCD)\OLE DB Command.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-CPG9G0OG\SQLEXPRESS.SalesDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-CPG9G0OG\SQLEXPRESS.SalesDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT – Dim_Product (SCD)\OLE DB Command.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\OLE DB Command.Inputs[OLE DB Command Input].Columns[Product_Unicode]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="Product_Unicode"
+                      externalMetadataColumnId="Package\DFT – Dim_Product (SCD)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\DFT – Dim_Product (SCD)\DC – Convert Product to Unicode.Outputs[Data Conversion Output].Columns[Product_Unicode]" />
+                    <inputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\OLE DB Command.Inputs[OLE DB Command Input].Columns[EndDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="EndDate"
+                      externalMetadataColumnId="Package\DFT – Dim_Product (SCD)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\DFT – Dim_Product (SCD)\Derived Column.Outputs[Derived Column Output].Columns[EndDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT – Dim_Product (SCD)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="dbTimeStamp"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT – Dim_Product (SCD)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="wstr"
+                      length="100"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT – Dim_Product (SCD)\OLE DB Command.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\DFT – Dim_Product (SCD)\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT – Dim_Product (SCD)\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\DFT – Dim_Product (SCD)\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT – Dim_Product (SCD)\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT – Dim_Product (SCD)\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT – Dim_Product (SCD)\SCD – Dim_Product"
+              componentClassID="Microsoft.SCD"
+              contactInfo="Slowly Changing Dimension;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
+              description="Updates a SQL Server Analysis Services data warehouse dimension. Update dimension records that are already present and  insert dimension records that aren't. For example, update the DimProduct table of the AdventureWorksDW OLAP database with data from the Products table in the AdventureWorks OLTP database."
+              name="SCD – Dim_Product"
+              version="3">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SELECT statement used to create a schema rowset."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT [Product_Unicode], [ProductCategory],[StartDate],[EndDate] FROM [dbo].[Dim_Product]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the WHERE clause in the SELECT statement that selects the current row among rows with identical business keys."
+                  name="CurrentRowWhere">[StartDate] IS NOT NULL AND [EndDate] IS NULL</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether historical attribute updates are directed to the transformation output for changing attribute updates."
+                  name="UpdateChangingAttributeHistory">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the transformation fails when columns with fixed attributes contain changes."
+                  name="FailOnFixedAttributeChange">true</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the column name for the inferred member."
+                  name="InferredMemberIndicator"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether inferred member updates are detected."
+                  name="EnableInferredMember">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the transformation fails when a lookup of an existing record fails."
+                  name="FailOnLookupFailure">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies that all rows in the input are new or the transformation detects the change type."
+                  name="IncomingRowChangeType"
+                  typeConverter="IncomingRowChangeType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT – Dim_Product (SCD)\SCD – Dim_Product.Connections[LookupConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-CPG9G0OG\SQLEXPRESS.SalesDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-CPG9G0OG\SQLEXPRESS.SalesDW]"
+                  description="Defines the connection to use for lookups in the dimension table"
+                  name="LookupConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT – Dim_Product (SCD)\SCD – Dim_Product.Inputs[Slowly Changing Dimension Input]"
+                  name="Slowly Changing Dimension Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\SCD – Dim_Product.Inputs[Slowly Changing Dimension Input].Columns[Product_Unicode]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="Product_Unicode"
+                      externalMetadataColumnId="Package\DFT – Dim_Product (SCD)\SCD – Dim_Product.Inputs[Slowly Changing Dimension Input].ExternalColumns[Product_Unicode]"
+                      lineageId="Package\DFT – Dim_Product (SCD)\DC – Convert Product to Unicode.Outputs[Data Conversion Output].Columns[Product_Unicode]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\SCD – Dim_Product.Inputs[Slowly Changing Dimension Input].Columns[ProductCategory]"
+                      cachedDataType="wstr"
+                      cachedLength="7"
+                      cachedName="ProductCategory"
+                      externalMetadataColumnId="Package\DFT – Dim_Product (SCD)\SCD – Dim_Product.Inputs[Slowly Changing Dimension Input].ExternalColumns[ProductCategory]"
+                      lineageId="Package\DFT – Dim_Product (SCD)\DRV – Add ProductCategory.Outputs[Derived Column Output].Columns[ProductCategory]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">3</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT – Dim_Product (SCD)\SCD – Dim_Product.Inputs[Slowly Changing Dimension Input].ExternalColumns[Product_Unicode]"
+                      dataType="wstr"
+                      length="100"
+                      name="Product_Unicode" />
+                    <externalMetadataColumn
+                      refId="Package\DFT – Dim_Product (SCD)\SCD – Dim_Product.Inputs[Slowly Changing Dimension Input].ExternalColumns[ProductCategory]"
+                      dataType="wstr"
+                      length="100"
+                      name="ProductCategory" />
+                    <externalMetadataColumn
+                      refId="Package\DFT – Dim_Product (SCD)\SCD – Dim_Product.Inputs[Slowly Changing Dimension Input].ExternalColumns[StartDate]"
+                      dataType="dbTimeStamp"
+                      name="StartDate" />
+                    <externalMetadataColumn
+                      refId="Package\DFT – Dim_Product (SCD)\SCD – Dim_Product.Inputs[Slowly Changing Dimension Input].ExternalColumns[EndDate]"
+                      dataType="dbTimeStamp"
+                      name="EndDate" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT – Dim_Product (SCD)\SCD – Dim_Product.Outputs[Unchanged Output]"
+                  description="Unchanged rows"
+                  exclusionGroup="1"
+                  name="Unchanged Output"
+                  synchronousInputId="Package\DFT – Dim_Product (SCD)\SCD – Dim_Product.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT – Dim_Product (SCD)\SCD – Dim_Product.Outputs[New Output]"
+                  description="New rows"
+                  exclusionGroup="1"
+                  name="New Output"
+                  synchronousInputId="Package\DFT – Dim_Product (SCD)\SCD – Dim_Product.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT – Dim_Product (SCD)\SCD – Dim_Product.Outputs[Fixed Attribute Output]"
+                  description="Rows with changes in columns tagged FixedAttribute"
+                  exclusionGroup="1"
+                  name="Fixed Attribute Output"
+                  synchronousInputId="Package\DFT – Dim_Product (SCD)\SCD – Dim_Product.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT – Dim_Product (SCD)\SCD – Dim_Product.Outputs[Changing Attribute Updates Output]"
+                  description="These rows contain new information for ChangingAttribute (Type 1) column changes"
+                  exclusionGroup="1"
+                  name="Changing Attribute Updates Output"
+                  synchronousInputId="Package\DFT – Dim_Product (SCD)\SCD – Dim_Product.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT – Dim_Product (SCD)\SCD – Dim_Product.Outputs[Historical Attribute Inserts Output]"
+                  description="HistoricalAttribute (Type 2) changes result in these new rows"
+                  exclusionGroup="2"
+                  name="Historical Attribute Inserts Output"
+                  synchronousInputId="Package\DFT – Dim_Product (SCD)\SCD – Dim_Product.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT – Dim_Product (SCD)\SCD – Dim_Product.Outputs[Inferred Member Updates Output]"
+                  description="Information to update unpopulated initial dimension row"
+                  exclusionGroup="1"
+                  name="Inferred Member Updates Output"
+                  synchronousInputId="Package\DFT – Dim_Product (SCD)\SCD – Dim_Product.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="SRC – DW_UpdatedSales"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DW_ValidSales]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-CPG9G0OG\SQLEXPRESS.SalesDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-CPG9G0OG\SQLEXPRESS.SalesDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Output].Columns[SaleID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Output].ExternalColumns[SaleID]"
+                      lineageId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Output].Columns[SaleID]"
+                      name="SaleID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Output].Columns[SaleDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Output].ExternalColumns[SaleDate]"
+                      lineageId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Output].Columns[SaleDate]"
+                      name="SaleDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Output].Columns[Product]"
+                      codePage="1254"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Output].ExternalColumns[Product]"
+                      length="100"
+                      lineageId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Output].Columns[Product]"
+                      name="Product"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Output].Columns[Quantity]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Output].ExternalColumns[Quantity]"
+                      lineageId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Output].Columns[Quantity]"
+                      name="Quantity"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Output].Columns[Price]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Output].ExternalColumns[Price]"
+                      lineageId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Output].Columns[Price]"
+                      name="Price"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Output].ExternalColumns[SaleID]"
+                      dataType="i4"
+                      name="SaleID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Output].ExternalColumns[SaleDate]"
+                      dataType="dbDate"
+                      name="SaleDate" />
+                    <externalMetadataColumn
+                      refId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Output].ExternalColumns[Product]"
+                      codePage="1254"
+                      dataType="str"
+                      length="100"
+                      name="Product" />
+                    <externalMetadataColumn
+                      refId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Output].ExternalColumns[Quantity]"
+                      dataType="i4"
+                      name="Quantity" />
+                    <externalMetadataColumn
+                      refId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Output].ExternalColumns[Price]"
+                      dataType="numeric"
+                      name="Price"
+                      precision="10"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Error Output].Columns[SaleID]"
+                      dataType="i4"
+                      lineageId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Error Output].Columns[SaleID]"
+                      name="SaleID" />
+                    <outputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Error Output].Columns[SaleDate]"
+                      dataType="dbDate"
+                      lineageId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Error Output].Columns[SaleDate]"
+                      name="SaleDate" />
+                    <outputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Error Output].Columns[Product]"
+                      codePage="1254"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Error Output].Columns[Product]"
+                      name="Product" />
+                    <outputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Error Output].Columns[Quantity]"
+                      dataType="i4"
+                      lineageId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Error Output].Columns[Quantity]"
+                      name="Quantity" />
+                    <outputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Error Output].Columns[Price]"
+                      dataType="numeric"
+                      lineageId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Error Output].Columns[Price]"
+                      name="Price"
+                      precision="10"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT – Dim_Product (SCD)\Union All"
+              componentClassID="Microsoft.UnionAll"
+              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+              name="Union All"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\DFT – Dim_Product (SCD)\Union All.Inputs[Union All Input 1]"
+                  name="Union All Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\Union All.Inputs[Union All Input 1].Columns[SaleID]"
+                      cachedDataType="i4"
+                      cachedName="SaleID"
+                      lineageId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Output].Columns[SaleID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT – Dim_Product (SCD)\Union All.Outputs[Union All Output 1].Columns[SaleID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\Union All.Inputs[Union All Input 1].Columns[SaleDate]"
+                      cachedDataType="dbDate"
+                      cachedName="SaleDate"
+                      lineageId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Output].Columns[SaleDate]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT – Dim_Product (SCD)\Union All.Outputs[Union All Output 1].Columns[SaleDate]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\Union All.Inputs[Union All Input 1].Columns[Product]"
+                      cachedCodepage="1254"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Product"
+                      lineageId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Output].Columns[Product]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT – Dim_Product (SCD)\Union All.Outputs[Union All Output 1].Columns[Product]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\Union All.Inputs[Union All Input 1].Columns[Quantity]"
+                      cachedDataType="i4"
+                      cachedName="Quantity"
+                      lineageId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Output].Columns[Quantity]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT – Dim_Product (SCD)\Union All.Outputs[Union All Output 1].Columns[Quantity]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\Union All.Inputs[Union All Input 1].Columns[Price]"
+                      cachedDataType="numeric"
+                      cachedName="Price"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      lineageId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Output].Columns[Price]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT – Dim_Product (SCD)\Union All.Outputs[Union All Output 1].Columns[Price]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\Union All.Inputs[Union All Input 1].Columns[Product_Unicode]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="Product_Unicode"
+                      lineageId="Package\DFT – Dim_Product (SCD)\DC – Convert Product to Unicode.Outputs[Data Conversion Output].Columns[Product_Unicode]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT – Dim_Product (SCD)\Union All.Outputs[Union All Output 1].Columns[Product_Unicode]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\Union All.Inputs[Union All Input 1].Columns[ProductCategory]"
+                      cachedDataType="wstr"
+                      cachedLength="7"
+                      cachedName="ProductCategory"
+                      lineageId="Package\DFT – Dim_Product (SCD)\DRV – Add ProductCategory.Outputs[Derived Column Output].Columns[ProductCategory]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT – Dim_Product (SCD)\Union All.Outputs[Union All Output 1].Columns[ProductCategory]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\DFT – Dim_Product (SCD)\Union All.Inputs[Union All Input 2]"
+                  hasSideEffects="true"
+                  name="Union All Input 2">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\Union All.Inputs[Union All Input 2].Columns[SaleID]"
+                      cachedDataType="i4"
+                      cachedName="SaleID"
+                      lineageId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Output].Columns[SaleID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT – Dim_Product (SCD)\Union All.Outputs[Union All Output 1].Columns[SaleID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\Union All.Inputs[Union All Input 2].Columns[SaleDate]"
+                      cachedDataType="dbDate"
+                      cachedName="SaleDate"
+                      lineageId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Output].Columns[SaleDate]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT – Dim_Product (SCD)\Union All.Outputs[Union All Output 1].Columns[SaleDate]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\Union All.Inputs[Union All Input 2].Columns[Product]"
+                      cachedCodepage="1254"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Product"
+                      lineageId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Output].Columns[Product]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT – Dim_Product (SCD)\Union All.Outputs[Union All Output 1].Columns[Product]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\Union All.Inputs[Union All Input 2].Columns[Quantity]"
+                      cachedDataType="i4"
+                      cachedName="Quantity"
+                      lineageId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Output].Columns[Quantity]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT – Dim_Product (SCD)\Union All.Outputs[Union All Output 1].Columns[Quantity]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\Union All.Inputs[Union All Input 2].Columns[Price]"
+                      cachedDataType="numeric"
+                      cachedName="Price"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      lineageId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Output].Columns[Price]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT – Dim_Product (SCD)\Union All.Outputs[Union All Output 1].Columns[Price]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\Union All.Inputs[Union All Input 2].Columns[Product_Unicode]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="Product_Unicode"
+                      lineageId="Package\DFT – Dim_Product (SCD)\DC – Convert Product to Unicode.Outputs[Data Conversion Output].Columns[Product_Unicode]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT – Dim_Product (SCD)\Union All.Outputs[Union All Output 1].Columns[Product_Unicode]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\Union All.Inputs[Union All Input 2].Columns[ProductCategory]"
+                      cachedDataType="wstr"
+                      cachedLength="7"
+                      cachedName="ProductCategory"
+                      lineageId="Package\DFT – Dim_Product (SCD)\DRV – Add ProductCategory.Outputs[Derived Column Output].Columns[ProductCategory]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT – Dim_Product (SCD)\Union All.Outputs[Union All Output 1].Columns[ProductCategory]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\DFT – Dim_Product (SCD)\Union All.Inputs[Union All Input 3]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Union All Input 3">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT – Dim_Product (SCD)\Union All.Outputs[Union All Output 1]"
+                  name="Union All Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\Union All.Outputs[Union All Output 1].Columns[SaleID]"
+                      dataType="i4"
+                      lineageId="Package\DFT – Dim_Product (SCD)\Union All.Outputs[Union All Output 1].Columns[SaleID]"
+                      name="SaleID" />
+                    <outputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\Union All.Outputs[Union All Output 1].Columns[SaleDate]"
+                      dataType="dbDate"
+                      lineageId="Package\DFT – Dim_Product (SCD)\Union All.Outputs[Union All Output 1].Columns[SaleDate]"
+                      name="SaleDate" />
+                    <outputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\Union All.Outputs[Union All Output 1].Columns[Product]"
+                      codePage="1254"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DFT – Dim_Product (SCD)\Union All.Outputs[Union All Output 1].Columns[Product]"
+                      name="Product" />
+                    <outputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\Union All.Outputs[Union All Output 1].Columns[Quantity]"
+                      dataType="i4"
+                      lineageId="Package\DFT – Dim_Product (SCD)\Union All.Outputs[Union All Output 1].Columns[Quantity]"
+                      name="Quantity" />
+                    <outputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\Union All.Outputs[Union All Output 1].Columns[Price]"
+                      dataType="numeric"
+                      lineageId="Package\DFT – Dim_Product (SCD)\Union All.Outputs[Union All Output 1].Columns[Price]"
+                      name="Price"
+                      precision="10"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\Union All.Outputs[Union All Output 1].Columns[Product_Unicode]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\DFT – Dim_Product (SCD)\Union All.Outputs[Union All Output 1].Columns[Product_Unicode]"
+                      name="Product_Unicode" />
+                    <outputColumn
+                      refId="Package\DFT – Dim_Product (SCD)\Union All.Outputs[Union All Output 1].Columns[ProductCategory]"
+                      dataType="wstr"
+                      length="7"
+                      lineageId="Package\DFT – Dim_Product (SCD)\Union All.Outputs[Union All Output 1].Columns[ProductCategory]"
+                      name="ProductCategory" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT – Dim_Product (SCD).Paths[Data Conversion Output]"
+              endId="Package\DFT – Dim_Product (SCD)\DRV – Add ProductCategory.Inputs[Derived Column Input]"
+              name="Data Conversion Output"
+              startId="Package\DFT – Dim_Product (SCD)\DC – Convert Product to Unicode.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\DFT – Dim_Product (SCD).Paths[Derived Column Output]"
+              endId="Package\DFT – Dim_Product (SCD)\SCD – Dim_Product.Inputs[Slowly Changing Dimension Input]"
+              name="Derived Column Output"
+              startId="Package\DFT – Dim_Product (SCD)\DRV – Add ProductCategory.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DFT – Dim_Product (SCD).Paths[Derived Column Output1]"
+              endId="Package\DFT – Dim_Product (SCD)\OLE DB Command.Inputs[OLE DB Command Input]"
+              name="Derived Column Output"
+              startId="Package\DFT – Dim_Product (SCD)\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DFT – Dim_Product (SCD).Paths[Derived Column Output2]"
+              endId="Package\DFT – Dim_Product (SCD)\Insert Destination.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\DFT – Dim_Product (SCD)\Derived Column 1.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DFT – Dim_Product (SCD).Paths[Historical Attribute Inserts Output]"
+              endId="Package\DFT – Dim_Product (SCD)\Derived Column.Inputs[Derived Column Input]"
+              name="Historical Attribute Inserts Output"
+              startId="Package\DFT – Dim_Product (SCD)\SCD – Dim_Product.Outputs[Historical Attribute Inserts Output]" />
+            <path
+              refId="Package\DFT – Dim_Product (SCD).Paths[New Output]"
+              endId="Package\DFT – Dim_Product (SCD)\Union All.Inputs[Union All Input 1]"
+              name="New Output"
+              startId="Package\DFT – Dim_Product (SCD)\SCD – Dim_Product.Outputs[New Output]" />
+            <path
+              refId="Package\DFT – Dim_Product (SCD).Paths[OLE DB Command Output]"
+              endId="Package\DFT – Dim_Product (SCD)\Union All.Inputs[Union All Input 2]"
+              name="OLE DB Command Output"
+              startId="Package\DFT – Dim_Product (SCD)\OLE DB Command.Outputs[OLE DB Command Output]" />
+            <path
+              refId="Package\DFT – Dim_Product (SCD).Paths[OLE DB Source Output]"
+              endId="Package\DFT – Dim_Product (SCD)\DC – Convert Product to Unicode.Inputs[Data Conversion Input]"
+              name="OLE DB Source Output"
+              startId="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\DFT – Dim_Product (SCD).Paths[Union All Output 1]"
+              endId="Package\DFT – Dim_Product (SCD)\Derived Column 1.Inputs[Derived Column Input]"
+              name="Union All Output 1"
+              startId="Package\DFT – Dim_Product (SCD)\Union All.Outputs[Union All Output 1]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\DFT – Fact_Sales"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{2AD41FF5-EA7E-4E58-9459-0C1E7FA0FCB4}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT – Fact_Sales"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT – Fact_Sales\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT – Fact_Sales\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT – Fact_Sales\Data Conversion.Inputs[Data Conversion Input].Columns[Product]"
+                      cachedCodepage="1254"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Product"
+                      lineageId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Output].Columns[Product]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT – Fact_Sales\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\DFT – Fact_Sales\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT – Fact_Sales\Data Conversion.Outputs[Data Conversion Output].Columns[Product_Unicode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\DFT – Fact_Sales\Data Conversion.Outputs[Data Conversion Output].Columns[Product_Unicode]"
+                      name="Product_Unicode"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Output].Columns[Product]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT – Fact_Sales\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\DFT – Fact_Sales\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT – Fact_Sales\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT – Fact_Sales\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT – Fact_Sales\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT – Fact_Sales\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT – Fact_Sales\DEST – Fact_Sales"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DEST – Fact_Sales"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Fact_Sales]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT – Fact_Sales\DEST – Fact_Sales.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-CPG9G0OG\SQLEXPRESS.SalesDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-CPG9G0OG\SQLEXPRESS.SalesDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT – Fact_Sales\DEST – Fact_Sales.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT – Fact_Sales\DEST – Fact_Sales.Inputs[OLE DB Destination Input].Columns[Quantity]"
+                      cachedDataType="i4"
+                      cachedName="Quantity"
+                      externalMetadataColumnId="Package\DFT – Fact_Sales\DEST – Fact_Sales.Inputs[OLE DB Destination Input].ExternalColumns[Quantity]"
+                      lineageId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Output].Columns[Quantity]" />
+                    <inputColumn
+                      refId="Package\DFT – Fact_Sales\DEST – Fact_Sales.Inputs[OLE DB Destination Input].Columns[Price]"
+                      cachedDataType="numeric"
+                      cachedName="Price"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT – Fact_Sales\DEST – Fact_Sales.Inputs[OLE DB Destination Input].ExternalColumns[Price]"
+                      lineageId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Output].Columns[Price]" />
+                    <inputColumn
+                      refId="Package\DFT – Fact_Sales\DEST – Fact_Sales.Inputs[OLE DB Destination Input].Columns[ProductKey]"
+                      cachedDataType="i4"
+                      cachedName="ProductKey"
+                      externalMetadataColumnId="Package\DFT – Fact_Sales\DEST – Fact_Sales.Inputs[OLE DB Destination Input].ExternalColumns[ProductKey]"
+                      lineageId="Package\DFT – Fact_Sales\LKP – Dim_Product.Outputs[Lookup Match Output].Columns[ProductKey]" />
+                    <inputColumn
+                      refId="Package\DFT – Fact_Sales\DEST – Fact_Sales.Inputs[OLE DB Destination Input].Columns[DateKey]"
+                      cachedDataType="i4"
+                      cachedName="DateKey"
+                      externalMetadataColumnId="Package\DFT – Fact_Sales\DEST – Fact_Sales.Inputs[OLE DB Destination Input].ExternalColumns[DateKey]"
+                      lineageId="Package\DFT – Fact_Sales\LKP – Dim_Date.Outputs[Lookup Match Output].Columns[DateKey]" />
+                    <inputColumn
+                      refId="Package\DFT – Fact_Sales\DEST – Fact_Sales.Inputs[OLE DB Destination Input].Columns[TotalAmount]"
+                      cachedDataType="numeric"
+                      cachedName="TotalAmount"
+                      cachedPrecision="21"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT – Fact_Sales\DEST – Fact_Sales.Inputs[OLE DB Destination Input].ExternalColumns[TotalAmount]"
+                      lineageId="Package\DFT – Fact_Sales\DRV – Calculate TotalAmount.Outputs[Derived Column Output].Columns[TotalAmount]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT – Fact_Sales\DEST – Fact_Sales.Inputs[OLE DB Destination Input].ExternalColumns[SalesID]"
+                      dataType="i4"
+                      name="SalesID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT – Fact_Sales\DEST – Fact_Sales.Inputs[OLE DB Destination Input].ExternalColumns[ProductKey]"
+                      dataType="i4"
+                      name="ProductKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT – Fact_Sales\DEST – Fact_Sales.Inputs[OLE DB Destination Input].ExternalColumns[DateKey]"
+                      dataType="i4"
+                      name="DateKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT – Fact_Sales\DEST – Fact_Sales.Inputs[OLE DB Destination Input].ExternalColumns[Quantity]"
+                      dataType="i4"
+                      name="Quantity" />
+                    <externalMetadataColumn
+                      refId="Package\DFT – Fact_Sales\DEST – Fact_Sales.Inputs[OLE DB Destination Input].ExternalColumns[Price]"
+                      dataType="numeric"
+                      name="Price"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT – Fact_Sales\DEST – Fact_Sales.Inputs[OLE DB Destination Input].ExternalColumns[TotalAmount]"
+                      dataType="numeric"
+                      name="TotalAmount"
+                      precision="21"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT – Fact_Sales\DEST – Fact_Sales.Inputs[OLE DB Destination Input].ExternalColumns[CreatedAt]"
+                      dataType="dbTimeStamp"
+                      name="CreatedAt" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT – Fact_Sales\DEST – Fact_Sales.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT – Fact_Sales\DEST – Fact_Sales.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT – Fact_Sales\DEST – Fact_Sales.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT – Fact_Sales\DEST – Fact_Sales.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT – Fact_Sales\DEST – Fact_Sales.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT – Fact_Sales\DEST – Fact_Sales.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT – Fact_Sales\DRV – Calculate TotalAmount"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="DRV – Calculate TotalAmount"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT – Fact_Sales\DRV – Calculate TotalAmount.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT – Fact_Sales\DRV – Calculate TotalAmount.Inputs[Derived Column Input].Columns[Quantity]"
+                      cachedDataType="i4"
+                      cachedName="Quantity"
+                      lineageId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Output].Columns[Quantity]" />
+                    <inputColumn
+                      refId="Package\DFT – Fact_Sales\DRV – Calculate TotalAmount.Inputs[Derived Column Input].Columns[Price]"
+                      cachedDataType="numeric"
+                      cachedName="Price"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      lineageId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Output].Columns[Price]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT – Fact_Sales\DRV – Calculate TotalAmount.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DFT – Fact_Sales\DRV – Calculate TotalAmount.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT – Fact_Sales\DRV – Calculate TotalAmount.Outputs[Derived Column Output].Columns[TotalAmount]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DFT – Fact_Sales\DRV – Calculate TotalAmount.Outputs[Derived Column Output].Columns[TotalAmount]"
+                      name="TotalAmount"
+                      precision="21"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Output].Columns[Quantity]} * #{Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Output].Columns[Price]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">Quantity * Price</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT – Fact_Sales\DRV – Calculate TotalAmount.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DFT – Fact_Sales\DRV – Calculate TotalAmount.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT – Fact_Sales\DRV – Calculate TotalAmount.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT – Fact_Sales\DRV – Calculate TotalAmount.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT – Fact_Sales\DRV – Calculate TotalAmount.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT – Fact_Sales\DRV – Calculate TotalAmount.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT – Fact_Sales\LKP – Dim_Date"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LKP – Dim_Date"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[Dim_Date]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[Dim_Date]) [refTable]
+where [refTable].[FullDate] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="DateKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FullDate" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Year" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Month" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="MonthName" dataType="DT_WSTR" length="20" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Quarter" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Output].Columns[SaleDate]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT – Fact_Sales\LKP – Dim_Date.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-CPG9G0OG\SQLEXPRESS.SalesDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-CPG9G0OG\SQLEXPRESS.SalesDW]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT – Fact_Sales\LKP – Dim_Date.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT – Fact_Sales\LKP – Dim_Date.Inputs[Lookup Input].Columns[SaleDate]"
+                      cachedDataType="dbDate"
+                      cachedName="SaleDate"
+                      lineageId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Output].Columns[SaleDate]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">FullDate</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT – Fact_Sales\LKP – Dim_Date.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DFT – Fact_Sales\LKP – Dim_Date.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT – Fact_Sales\LKP – Dim_Date.Outputs[Lookup Match Output].Columns[DateKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\DFT – Fact_Sales\LKP – Dim_Date.Outputs[Lookup Match Output].Columns[DateKey]"
+                      name="DateKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">DateKey</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT – Fact_Sales\LKP – Dim_Date.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DFT – Fact_Sales\LKP – Dim_Date.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT – Fact_Sales\LKP – Dim_Date.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DFT – Fact_Sales\LKP – Dim_Date.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT – Fact_Sales\LKP – Dim_Date.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT – Fact_Sales\LKP – Dim_Date.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT – Fact_Sales\LKP – Dim_Date.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT – Fact_Sales\LKP – Dim_Date.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT – Fact_Sales\LKP – Dim_Product"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LKP – Dim_Product"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[Dim_Product]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[Dim_Product]) [refTable]
+where [refTable].[Product_Unicode] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="ProductKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Product_Unicode" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="StartDate" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="EndDate" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="IsCurrent" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ProductName" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ProductCategory" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DFT – Fact_Sales\Data Conversion.Outputs[Data Conversion Output].Columns[Product_Unicode]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT – Fact_Sales\LKP – Dim_Product.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-CPG9G0OG\SQLEXPRESS.SalesDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-CPG9G0OG\SQLEXPRESS.SalesDW]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT – Fact_Sales\LKP – Dim_Product.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT – Fact_Sales\LKP – Dim_Product.Inputs[Lookup Input].Columns[Product_Unicode]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="Product_Unicode"
+                      lineageId="Package\DFT – Fact_Sales\Data Conversion.Outputs[Data Conversion Output].Columns[Product_Unicode]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">Product_Unicode</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT – Fact_Sales\LKP – Dim_Product.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DFT – Fact_Sales\LKP – Dim_Product.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT – Fact_Sales\LKP – Dim_Product.Outputs[Lookup Match Output].Columns[ProductKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\DFT – Fact_Sales\LKP – Dim_Product.Outputs[Lookup Match Output].Columns[ProductKey]"
+                      name="ProductKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">ProductKey</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT – Fact_Sales\LKP – Dim_Product.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DFT – Fact_Sales\LKP – Dim_Product.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT – Fact_Sales\LKP – Dim_Product.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DFT – Fact_Sales\LKP – Dim_Product.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT – Fact_Sales\LKP – Dim_Product.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT – Fact_Sales\LKP – Dim_Product.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT – Fact_Sales\LKP – Dim_Product.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT – Fact_Sales\LKP – Dim_Product.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT – Fact_Sales\SRC – DW_ValidSales"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="SRC – DW_ValidSales"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DW_ValidSales]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-CPG9G0OG\SQLEXPRESS.SalesDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-CPG9G0OG\SQLEXPRESS.SalesDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Output].Columns[SaleID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Output].ExternalColumns[SaleID]"
+                      lineageId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Output].Columns[SaleID]"
+                      name="SaleID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Output].Columns[SaleDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Output].ExternalColumns[SaleDate]"
+                      lineageId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Output].Columns[SaleDate]"
+                      name="SaleDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Output].Columns[Product]"
+                      codePage="1254"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Output].ExternalColumns[Product]"
+                      length="100"
+                      lineageId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Output].Columns[Product]"
+                      name="Product"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Output].Columns[Quantity]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Output].ExternalColumns[Quantity]"
+                      lineageId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Output].Columns[Quantity]"
+                      name="Quantity"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Output].Columns[Price]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Output].ExternalColumns[Price]"
+                      lineageId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Output].Columns[Price]"
+                      name="Price"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Output].ExternalColumns[SaleID]"
+                      dataType="i4"
+                      name="SaleID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Output].ExternalColumns[SaleDate]"
+                      dataType="dbDate"
+                      name="SaleDate" />
+                    <externalMetadataColumn
+                      refId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Output].ExternalColumns[Product]"
+                      codePage="1254"
+                      dataType="str"
+                      length="100"
+                      name="Product" />
+                    <externalMetadataColumn
+                      refId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Output].ExternalColumns[Quantity]"
+                      dataType="i4"
+                      name="Quantity" />
+                    <externalMetadataColumn
+                      refId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Output].ExternalColumns[Price]"
+                      dataType="numeric"
+                      name="Price"
+                      precision="10"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Error Output].Columns[SaleID]"
+                      dataType="i4"
+                      lineageId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Error Output].Columns[SaleID]"
+                      name="SaleID" />
+                    <outputColumn
+                      refId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Error Output].Columns[SaleDate]"
+                      dataType="dbDate"
+                      lineageId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Error Output].Columns[SaleDate]"
+                      name="SaleDate" />
+                    <outputColumn
+                      refId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Error Output].Columns[Product]"
+                      codePage="1254"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Error Output].Columns[Product]"
+                      name="Product" />
+                    <outputColumn
+                      refId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Error Output].Columns[Quantity]"
+                      dataType="i4"
+                      lineageId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Error Output].Columns[Quantity]"
+                      name="Quantity" />
+                    <outputColumn
+                      refId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Error Output].Columns[Price]"
+                      dataType="numeric"
+                      lineageId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Error Output].Columns[Price]"
+                      name="Price"
+                      precision="10"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT – Fact_Sales.Paths[Data Conversion Output]"
+              endId="Package\DFT – Fact_Sales\LKP – Dim_Product.Inputs[Lookup Input]"
+              name="Data Conversion Output"
+              startId="Package\DFT – Fact_Sales\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\DFT – Fact_Sales.Paths[Derived Column Output]"
+              endId="Package\DFT – Fact_Sales\DEST – Fact_Sales.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\DFT – Fact_Sales\DRV – Calculate TotalAmount.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DFT – Fact_Sales.Paths[Lookup Match Output]"
+              endId="Package\DFT – Fact_Sales\LKP – Dim_Date.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\DFT – Fact_Sales\LKP – Dim_Product.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DFT – Fact_Sales.Paths[Lookup Match Output1]"
+              endId="Package\DFT – Fact_Sales\DRV – Calculate TotalAmount.Inputs[Derived Column Input]"
+              name="Lookup Match Output"
+              startId="Package\DFT – Fact_Sales\LKP – Dim_Date.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DFT – Fact_Sales.Paths[OLE DB Source Output]"
+              endId="Package\DFT – Fact_Sales\Data Conversion.Inputs[Data Conversion Input]"
+              name="OLE DB Source Output"
+              startId="Package\DFT – Fact_Sales\SRC – DW_ValidSales.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="153.6,41.6"
+          Id="Package\DFT – Dim_Date"
+          TopLeft="253.33331949181,22.5333331766394" />
+        <NodeLayout
+          Size="199.2,41.6"
+          Id="Package\DFT – Dim_Product (SCD)"
+          TopLeft="29.9999983608722,21.6666665159993" />
+        <NodeLayout
+          Size="159.2,41.6"
+          Id="Package\DFT – Fact_Sales"
+          TopLeft="52.4999971315266,98.7999993129571" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DFT – Dim_Date">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="218.4,41.6"
+          Id="Package\DFT – Dim_Date\SRC – DW_ValidSales (Dates)"
+          TopLeft="157.999997645617,91.9999986290932" />
+        <NodeLayout
+          Size="204,41.6"
+          Id="Package\DFT – Dim_Date\DRV – Build Date Attributes"
+          TopLeft="222.999996677041,225.999996632338" />
+        <EdgeLayout
+          Id="Package\DFT – Dim_Date.Paths[OLE DB Source Output]"
+          TopLeft="267.199997645617,133.599998629093">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="57.7999990314245,92.3999980032444"
+              Start="0,0"
+              End="57.7999990314245,84.8999980032444">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.1999990016222" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,42.1999990016222"
+                    Point2="0,46.1999990016222"
+                    Point3="4,46.1999990016222" />
+                  <mssgle:LineSegment
+                    End="53.7999990314245,46.1999990016222" />
+                  <mssgle:CubicBezierSegment
+                    Point1="53.7999990314245,46.1999990016222"
+                    Point2="57.7999990314245,46.1999990016222"
+                    Point3="57.7999990314245,50.1999990016222" />
+                  <mssgle:LineSegment
+                    End="57.7999990314245,84.8999980032444" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="160.8,41.6"
+          Id="Package\DFT – Dim_Date\DEST – Dim_Date"
+          TopLeft="287.999995708466,366.999994531274" />
+        <EdgeLayout
+          Id="Package\DFT – Dim_Date.Paths[Derived Column Output]"
+          TopLeft="324.999996677041,267.599996632338">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="43.3999990314245,99.3999978989363"
+              Start="0,0"
+              End="43.3999990314245,91.8999978989363">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.6999989494682" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,45.6999989494682"
+                    Point2="0,49.6999989494682"
+                    Point3="4,49.6999989494682" />
+                  <mssgle:LineSegment
+                    End="39.3999990314245,49.6999989494682" />
+                  <mssgle:CubicBezierSegment
+                    Point1="39.3999990314245,49.6999989494682"
+                    Point2="43.3999990314245,49.6999989494682"
+                    Point3="43.3999990314245,53.6999989494682" />
+                  <mssgle:LineSegment
+                    End="43.3999990314245,91.8999978989363" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT – Dim_Date\SRC – DW_ValidSales (Dates)">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT – Dim_Date\DEST – Dim_Date">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\DFT – Dim_Product (SCD)">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="208,41.6"
+          Id="Package\DFT – Dim_Product (SCD)\DRV – Add ProductCategory"
+          TopLeft="130.1,208.7" />
+        <NodeLayout
+          Size="197.6,41.6"
+          Id="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales"
+          TopLeft="135.3,5.49999999999995" />
+        <NodeLayout
+          Size="229.6,41.6"
+          Id="Package\DFT – Dim_Product (SCD)\DC – Convert Product to Unicode"
+          TopLeft="119.3,107.1" />
+        <NodeLayout
+          Size="168.8,41.6"
+          Id="Package\DFT – Dim_Product (SCD)\SCD – Dim_Product"
+          TopLeft="149.7,310.3" />
+        <EdgeLayout
+          Id="Package\DFT – Dim_Product (SCD).Paths[Data Conversion Output]"
+          TopLeft="234.1,148.7">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT – Dim_Product (SCD).Paths[OLE DB Source Output]"
+          TopLeft="234.1,47.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT – Dim_Product (SCD).Paths[Derived Column Output]"
+          TopLeft="234.1,250.3">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="152.8,41.6"
+          Id="Package\DFT – Dim_Product (SCD)\Derived Column"
+          TopLeft="20.7,411.9" />
+        <EdgeLayout
+          Id="Package\DFT – Dim_Product (SCD).Paths[Historical Attribute Inserts Output]"
+          TopLeft="207.3,351.9">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-110.2,59.9999999999999"
+              Start="0,0"
+              End="-110.2,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.338028169014" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.338028169014"
+                    Point2="0,24.338028169014"
+                    Point3="-4,24.338028169014" />
+                  <mssgle:LineSegment
+                    End="-106.2,24.338028169014" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-106.2,24.338028169014"
+                    Point2="-110.2,24.338028169014"
+                    Point3="-110.2,28.338028169014" />
+                  <mssgle:LineSegment
+                    End="-110.2,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-130.15638671875,29.338028169014,150.1127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="167.2,41.6"
+          Id="Package\DFT – Dim_Product (SCD)\OLE DB Command"
+          TopLeft="5.50000000000006,513.5" />
+        <EdgeLayout
+          Id="Package\DFT – Dim_Product (SCD).Paths[Derived Column Output1]"
+          TopLeft="97.1000000000001,453.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-8,59.9999999999999"
+              Start="0,0"
+              End="-8,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="-4,30" />
+                  <mssgle:LineSegment
+                    End="-4,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-4,30"
+                    Point2="-8,30"
+                    Point3="-8,34" />
+                  <mssgle:LineSegment
+                    End="-8,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="120,41.6"
+          Id="Package\DFT – Dim_Product (SCD)\Union All"
+          TopLeft="174.1,615.099999999999" />
+        <EdgeLayout
+          Id="Package\DFT – Dim_Product (SCD).Paths[New Output]"
+          TopLeft="260.9,351.9">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-8.1333333333333,263.2"
+              Start="0,0"
+              End="-8.1333333333333,255.7">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,126.983488211351" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,126.983488211351"
+                    Point2="0,130.983488211351"
+                    Point3="-4,130.983488211351" />
+                  <mssgle:LineSegment
+                    End="-4.1333333333333,130.983488211351" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-4.1333333333333,130.983488211351"
+                    Point2="-8.1333333333333,130.983488211351"
+                    Point3="-8.1333333333333,134.983488211351" />
+                  <mssgle:LineSegment
+                    End="-8.1333333333333,255.7" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-31.1580533854167,135.983488211351,54.1827734375,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT – Dim_Product (SCD).Paths[OLE DB Command Output]"
+          TopLeft="89.1000000000001,555.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="126.333333333333,59.9999999999999"
+              Start="0,0"
+              End="126.333333333333,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.5263157894736" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.5263157894736"
+                    Point2="0,35.5263157894736"
+                    Point3="4,35.5263157894736" />
+                  <mssgle:LineSegment
+                    End="122.333333333333,35.5263157894736" />
+                  <mssgle:CubicBezierSegment
+                    Point1="122.333333333333,35.5263157894736"
+                    Point2="126.333333333333,35.5263157894736"
+                    Point3="126.333333333333,39.5263157894736" />
+                  <mssgle:LineSegment
+                    End="126.333333333333,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="161.6,41.6"
+          Id="Package\DFT – Dim_Product (SCD)\Derived Column 1"
+          TopLeft="153.3,716.699999999999" />
+        <EdgeLayout
+          Id="Package\DFT – Dim_Product (SCD).Paths[Union All Output 1]"
+          TopLeft="234.1,656.699999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="159.2,41.6"
+          Id="Package\DFT – Dim_Product (SCD)\Insert Destination"
+          TopLeft="154.5,818.299999999999" />
+        <EdgeLayout
+          Id="Package\DFT – Dim_Product (SCD).Paths[Derived Column Output2]"
+          TopLeft="234.1,758.299999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT – Dim_Product (SCD)\SCD – Dim_Product">
+    <Properties>
+      <Property>
+        <Name>SCDMetadata</Name>
+        <Value
+          type="q2:string">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SCDWizardMetadata xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;ConnectionID&gt;{1F57549E-7695-47EF-AA98-7D3CCEEB779B}&lt;/ConnectionID&gt;
+  &lt;TableName&gt;[dbo].[Dim_Product]&lt;/TableName&gt;
+  &lt;InputToColumnsCollection&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;DC – Convert Product to Unicode.Outputs[Data Conversion Output].Columns[Product_Unicode]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;Product_Unicode&lt;/ColumnName&gt;
+      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;DRV – Add ProductCategory.Outputs[Derived Column Output].Columns[ProductCategory]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;ProductCategory&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;HistoricalAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+  &lt;/InputToColumnsCollection&gt;
+  &lt;GeneratedComponentsIdentificationStrings&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Derived Column&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;OLE DB Command&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Union All&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Derived Column 1&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Insert Destination&lt;/anyType&gt;
+  &lt;/GeneratedComponentsIdentificationStrings&gt;
+  &lt;FailFixedAttribute&gt;true&lt;/FailFixedAttribute&gt;
+  &lt;FailChangeAttribute&gt;false&lt;/FailChangeAttribute&gt;
+  &lt;UseStartEndDate&gt;true&lt;/UseStartEndDate&gt;
+  &lt;CurrentIndicatorColumn /&gt;
+  &lt;InferredIndicatorColumn /&gt;
+  &lt;ValueCurrent /&gt;
+  &lt;ValueExpired /&gt;
+  &lt;StartDateColumn&gt;StartDate&lt;/StartDateColumn&gt;
+  &lt;EndDateColumn&gt;EndDate&lt;/EndDateColumn&gt;
+  &lt;DateVariable&gt;User::CurrentDate&lt;/DateVariable&gt;
+  &lt;EnableInferredSupport&gt;false&lt;/EnableInferredSupport&gt;
+&lt;/SCDWizardMetadata&gt;</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT – Dim_Product (SCD)\SRC – DW_UpdatedSales">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\DFT – Fact_Sales">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="181.6,41.6"
+          Id="Package\DFT – Fact_Sales\SRC – DW_ValidSales"
+          TopLeft="119.166660155687,38.1333330681589" />
+        <NodeLayout
+          Size="166.4,41.6"
+          Id="Package\DFT – Fact_Sales\LKP – Dim_Product"
+          TopLeft="105.833327550855,253.066664906873" />
+        <NodeLayout
+          Size="156,41.6"
+          Id="Package\DFT – Fact_Sales\Data Conversion"
+          TopLeft="95.833328097231,148.199998969436" />
+        <EdgeLayout
+          Id="Package\DFT – Fact_Sales.Paths[OLE DB Source Output]"
+          TopLeft="209.966660155687,79.7333330681589">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-36.1333320584562,68.4666659012768"
+              Start="0,0"
+              End="-36.1333320584562,60.9666659012768">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.2333329506384" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,30.2333329506384"
+                    Point2="0,34.2333329506384"
+                    Point3="-4,34.2333329506384" />
+                  <mssgle:LineSegment
+                    End="-32.1333320584562,34.2333329506384" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-32.1333320584562,34.2333329506384"
+                    Point2="-36.1333320584562,34.2333329506384"
+                    Point3="-36.1333320584562,38.2333329506384" />
+                  <mssgle:LineSegment
+                    End="-36.1333320584562,60.9666659012768" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT – Fact_Sales.Paths[Data Conversion Output]"
+          TopLeft="173.833328097231,189.799998969436">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="15.1999994536241,63.266665937437"
+              Start="0,0"
+              End="15.1999994536241,55.766665937437">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.6333329687185" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27.6333329687185"
+                    Point2="0,31.6333329687185"
+                    Point3="4,31.6333329687185" />
+                  <mssgle:LineSegment
+                    End="11.1999994536241,31.6333329687185" />
+                  <mssgle:CubicBezierSegment
+                    Point1="11.1999994536241,31.6333329687185"
+                    Point2="15.1999994536241,31.6333329687185"
+                    Point3="15.1999994536241,35.6333329687185" />
+                  <mssgle:LineSegment
+                    End="15.1999994536241,55.766665937437" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="152.8,41.6"
+          Id="Package\DFT – Fact_Sales\LKP – Dim_Date"
+          TopLeft="114.166660428875,353.59999754111" />
+        <EdgeLayout
+          Id="Package\DFT – Fact_Sales.Paths[Lookup Match Output]"
+          TopLeft="189.799993989865,294.666664906873">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,58.9333326342372"
+              Start="0,0"
+              End="0,51.4333326342372">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.4333326342372" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,19.9119788171186,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="214.4,41.6"
+          Id="Package\DFT – Fact_Sales\DRV – Calculate TotalAmount"
+          TopLeft="194.99998934567,457.599996817907" />
+        <EdgeLayout
+          Id="Package\DFT – Fact_Sales.Paths[Lookup Match Output1]"
+          TopLeft="190.566660428875,395.19999754111">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="111.633328916795,62.3999992767969"
+              Start="0,0"
+              End="111.633328916795,54.8999992767969">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.1999996383985" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27.1999996383985"
+                    Point2="0,31.1999996383985"
+                    Point3="4,31.1999996383985" />
+                  <mssgle:LineSegment
+                    End="107.633328916795,31.1999996383985" />
+                  <mssgle:CubicBezierSegment
+                    Point1="107.633328916795,31.1999996383985"
+                    Point2="111.633328916795,31.1999996383985"
+                    Point3="111.633328916795,35.1999996383985" />
+                  <mssgle:LineSegment
+                    End="111.633328916795,54.8999992767969" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="7.62527773964742,36.1999996383985,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="166.4,41.6"
+          Id="Package\DFT – Fact_Sales\DEST – Fact_Sales"
+          TopLeft="136.458325877579,566.583329393384" />
+        <EdgeLayout
+          Id="Package\DFT – Fact_Sales.Paths[Derived Column Output]"
+          TopLeft="302.19998934567,499.199996817907">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-82.5416634680912,67.3833325754767"
+              Start="0,0"
+              End="-82.5416634680912,59.8833325754767">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.6916662877384" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,29.6916662877384"
+                    Point2="0,33.6916662877384"
+                    Point3="-4,33.6916662877384" />
+                  <mssgle:LineSegment
+                    End="-78.5416634680912,33.6916662877384" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-78.5416634680912,33.6916662877384"
+                    Point2="-82.5416634680912,33.6916662877384"
+                    Point3="-82.5416634680912,37.6916662877384" />
+                  <mssgle:LineSegment
+                    End="-82.5416634680912,59.8833325754767" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT – Fact_Sales\SRC – DW_ValidSales">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT – Fact_Sales\LKP – Dim_Product">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[Dim_Product]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT – Fact_Sales\LKP – Dim_Date">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[Dim_Date]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT – Fact_Sales\DEST – Fact_Sales">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

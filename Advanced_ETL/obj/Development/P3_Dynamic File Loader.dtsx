@@ -1,0 +1,822 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/22/2025 1:15:50 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-CPG9G0OG"
+  DTS:CreatorName="LAPTOP-CPG9G0OG\ATIF"
+  DTS:DTSID="{57F61C4C-F09C-499D-95A5-4134369A7D4A}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.2"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="13"
+  DTS:VersionGUID="{F2785D7E-8E33-429D-9AFF-52EBFC12B22B}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Flat File Connection Manager]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{A8116B13-4BB0-42B4-89B2-CE3A35641170}"
+      DTS:ObjectName="Flat File Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="65001"
+          DTS:ConnectionString="C:\ETLFiles\newEMployee_cleaned.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="EmployeeName"
+              DTS:DTSID="{369D83D3-726C-4144-80C0-BFF9FDFBEA38}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Department"
+              DTS:DTSID="{D4F158F3-C28E-4DAD-8525-1197E13EA173}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Salary"
+              DTS:DTSID="{43A66E56-F07A-42ED-AAFF-648F2FDB6862}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="JoinDate"
+              DTS:DTSID="{DF74638C-3EB9-4C33-BAC7-1CFDC394BC33}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LAPTOP-CPG9G0OG\SQLEXPRESS.FileOpsDW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{A4553D71-AE2A-43D8-BFE0-DC57C46B93E2}"
+      DTS:ObjectName="LAPTOP-CPG9G0OG\SQLEXPRESS.FileOpsDW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=LAPTOP-CPG9G0OG\SQLEXPRESS;Initial Catalog=FileOpsDW;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package1-{A4553D71-AE2A-43D8-BFE0-DC57C46B93E2}LAPTOP-CPG9G0OG\SQLEXPRESS.FileOpsDW;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0688C018-9E8B-4E48-B0A0-ECFF1E8A4640}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ArchiveFolder">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\ETLFiles\Archive\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A0065AE3-FA52-4108-8829-3F2625B1CB2A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FullFilePath">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FEADF980-EB96-47EF-AEBF-DE2ADF8AB6B3}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SourceFolder">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\ETLFiles\</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\FELC_ProcessAllCSV"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:DelayValidation="True"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{19495503-5BAA-4B07-90C2-3A43D873BA94}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="FELC_ProcessAllCSV">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachFileEnumerator"
+        DTS:DTSID="{7FAD0462-B756-492A-AD47-800EA706827D}"
+        DTS:ObjectName="{7FAD0462-B756-492A-AD47-800EA706827D}">
+        <DTS:ObjectData>
+          <ForEachFileEnumeratorProperties>
+            <FEFEProperty
+              Folder="C:\ETLFiles\" />
+            <FEFEProperty
+              FileSpec="*.csv" />
+            <FEFEProperty
+              FileNameRetrievalType="0" />
+            <FEFEProperty
+              Recurse="0" />
+          </ForEachFileEnumeratorProperties>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{06F9B56F-9B2A-477A-9D2C-F1E3E908BC5B}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="DFT_LoadSingleFile"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Derived Column"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Derived Column.Inputs[Derived Column Input].Columns[EmployeeName]"
+                          cachedCodepage="65001"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="EmployeeName"
+                          lineageId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source.Outputs[Flat File Source Output].Columns[EmployeeName]" />
+                        <inputColumn
+                          refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Derived Column.Inputs[Derived Column Input].Columns[Department]"
+                          cachedCodepage="65001"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Department"
+                          lineageId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source.Outputs[Flat File Source Output].Columns[Department]" />
+                        <inputColumn
+                          refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Derived Column.Inputs[Derived Column Input].Columns[Salary]"
+                          cachedCodepage="65001"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Salary"
+                          lineageId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source.Outputs[Flat File Source Output].Columns[Salary]" />
+                        <inputColumn
+                          refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Derived Column.Inputs[Derived Column Input].Columns[JoinDate]"
+                          cachedCodepage="65001"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="JoinDate"
+                          lineageId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source.Outputs[Flat File Source Output].Columns[JoinDate]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Derived Column.Outputs[Derived Column Output].Columns[EmployeeName_UNI]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="200"
+                          lineageId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Derived Column.Outputs[Derived Column Output].Columns[EmployeeName_UNI]"
+                          name="EmployeeName_UNI"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_WSTR,200)[TRIM](#{Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source.Outputs[Flat File Source Output].Columns[EmployeeName]})</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_WSTR,200)TRIM(EmployeeName)</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Derived Column.Outputs[Derived Column Output].Columns[Department_UNI]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="100"
+                          lineageId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Derived Column.Outputs[Derived Column Output].Columns[Department_UNI]"
+                          name="Department_UNI"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_WSTR,100)[TRIM](#{Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source.Outputs[Flat File Source Output].Columns[Department]})</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_WSTR,100)TRIM(Department)</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Derived Column.Outputs[Derived Column Output].Columns[Salary_DEC]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Derived Column.Outputs[Derived Column Output].Columns[Salary_DEC]"
+                          name="Salary_DEC"
+                          precision="18"
+                          scale="2"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[LEN]([TRIM](#{Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source.Outputs[Flat File Source Output].Columns[Salary]})) == 0 ? NULL(DT_NUMERIC,18,2) : (DT_NUMERIC,18,2)([REPLACE]([REPLACE]([TRIM](#{Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source.Outputs[Flat File Source Output].Columns[Salary]}),".",""),",","."))</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">LEN(TRIM(Salary)) == 0 ? NULL(DT_NUMERIC,18,2) : (DT_NUMERIC,18,2)(REPLACE(REPLACE(TRIM(Salary),".",""),",","."))</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Derived Column.Outputs[Derived Column Output].Columns[JoinDate_ISO]"
+                          dataType="dbDate"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Derived Column.Outputs[Derived Column Output].Columns[JoinDate_ISO]"
+                          name="JoinDate_ISO"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[LEN]([TRIM](#{Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source.Outputs[Flat File Source Output].Columns[JoinDate]})) == 0 ? NULL(DT_DBDATE) : ([FINDSTRING](#{Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source.Outputs[Flat File Source Output].Columns[JoinDate]},"-",1) &gt; 0 ? (DT_DBDATE)[TRIM](#{Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source.Outputs[Flat File Source Output].Columns[JoinDate]}) : ([FINDSTRING](#{Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source.Outputs[Flat File Source Output].Columns[JoinDate]},".",1) &gt; 0 ? (DT_DBDATE)([SUBSTRING](#{Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source.Outputs[Flat File Source Output].Columns[JoinDate]},7,4) + "-" + [SUBSTRING](#{Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source.Outputs[Flat File Source Output].Columns[JoinDate]},4,2) + "-" + [SUBSTRING](#{Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source.Outputs[Flat File Source Output].Columns[JoinDate]},1,2)) : NULL(DT_DBDATE)))</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">LEN(TRIM(JoinDate)) == 0 ? NULL(DT_DBDATE) : (FINDSTRING(JoinDate,"-",1) &gt; 0 ? (DT_DBDATE)TRIM(JoinDate) : (FINDSTRING(JoinDate,".",1) &gt; 0 ? (DT_DBDATE)(SUBSTRING(JoinDate,7,4) + "-" + SUBSTRING(JoinDate,4,2) + "-" + SUBSTRING(JoinDate,1,2)) : NULL(DT_DBDATE)))</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source"
+                  componentClassID="Microsoft.FlatFileSource"
+                  contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Flat File Source"
+                  localeId="1033"
+                  name="Flat File Source"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether zero-length columns are treated as null."
+                      name="RetainNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                      name="FileNameColumnName"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Flat File Connection Manager]"
+                      connectionManagerRefId="Package.ConnectionManagers[Flat File Connection Manager]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source.Outputs[Flat File Source Output]"
+                      name="Flat File Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source.Outputs[Flat File Source Output].Columns[EmployeeName]"
+                          codePage="65001"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[EmployeeName]"
+                          length="50"
+                          lineageId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source.Outputs[Flat File Source Output].Columns[EmployeeName]"
+                          name="EmployeeName"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source.Outputs[Flat File Source Output].Columns[Department]"
+                          codePage="65001"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Department]"
+                          length="50"
+                          lineageId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source.Outputs[Flat File Source Output].Columns[Department]"
+                          name="Department"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source.Outputs[Flat File Source Output].Columns[Salary]"
+                          codePage="65001"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Salary]"
+                          length="50"
+                          lineageId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source.Outputs[Flat File Source Output].Columns[Salary]"
+                          name="Salary"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source.Outputs[Flat File Source Output].Columns[JoinDate]"
+                          codePage="65001"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[JoinDate]"
+                          length="50"
+                          lineageId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source.Outputs[Flat File Source Output].Columns[JoinDate]"
+                          name="JoinDate"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[EmployeeName]"
+                          codePage="65001"
+                          dataType="str"
+                          length="50"
+                          name="EmployeeName" />
+                        <externalMetadataColumn
+                          refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Department]"
+                          codePage="65001"
+                          dataType="str"
+                          length="50"
+                          name="Department" />
+                        <externalMetadataColumn
+                          refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Salary]"
+                          codePage="65001"
+                          dataType="str"
+                          length="50"
+                          name="Salary" />
+                        <externalMetadataColumn
+                          refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[JoinDate]"
+                          codePage="65001"
+                          dataType="str"
+                          length="50"
+                          name="JoinDate" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source.Outputs[Flat File Source Error Output]"
+                      isErrorOut="true"
+                      name="Flat File Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          codePage="65001"
+                          dataType="text"
+                          description="Flat File Source Error Output Column"
+                          lineageId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          name="Flat File Source Error Output Column" />
+                        <outputColumn
+                          refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\OLE DB Destination"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination"
+                  usesDispositions="true"
+                  validateExternalMetadata="False"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Employee_Staging]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,ROWS_PER_BATCH = 10000</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">0</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\OLE DB Destination.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LAPTOP-CPG9G0OG\SQLEXPRESS.FileOpsDW]"
+                      connectionManagerRefId="Package.ConnectionManagers[LAPTOP-CPG9G0OG\SQLEXPRESS.FileOpsDW]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[EmployeeName_UNI]"
+                          cachedDataType="wstr"
+                          cachedLength="200"
+                          cachedName="EmployeeName_UNI"
+                          externalMetadataColumnId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EmployeeName]"
+                          lineageId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Derived Column.Outputs[Derived Column Output].Columns[EmployeeName_UNI]" />
+                        <inputColumn
+                          refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Department_UNI]"
+                          cachedDataType="wstr"
+                          cachedLength="100"
+                          cachedName="Department_UNI"
+                          externalMetadataColumnId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Department]"
+                          lineageId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Derived Column.Outputs[Derived Column Output].Columns[Department_UNI]" />
+                        <inputColumn
+                          refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Salary_DEC]"
+                          cachedDataType="numeric"
+                          cachedName="Salary_DEC"
+                          cachedPrecision="18"
+                          cachedScale="2"
+                          externalMetadataColumnId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Salary]"
+                          lineageId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Derived Column.Outputs[Derived Column Output].Columns[Salary_DEC]" />
+                        <inputColumn
+                          refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[JoinDate_ISO]"
+                          cachedDataType="dbDate"
+                          cachedName="JoinDate_ISO"
+                          externalMetadataColumnId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[JoinDate]"
+                          lineageId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Derived Column.Outputs[Derived Column Output].Columns[JoinDate_ISO]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EmployeeID]"
+                          dataType="i4"
+                          name="EmployeeID" />
+                        <externalMetadataColumn
+                          refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EmployeeName]"
+                          dataType="wstr"
+                          length="100"
+                          name="EmployeeName" />
+                        <externalMetadataColumn
+                          refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Department]"
+                          dataType="wstr"
+                          length="50"
+                          name="Department" />
+                        <externalMetadataColumn
+                          refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Salary]"
+                          dataType="numeric"
+                          name="Salary"
+                          precision="10"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[JoinDate]"
+                          dataType="dbDate"
+                          name="JoinDate" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile.Paths[Derived Column Output]"
+                  endId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="Derived Column Output"
+                  startId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Derived Column.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile.Paths[Flat File Source Output]"
+                  endId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Derived Column.Inputs[Derived Column Input]"
+                  name="Flat File Source Output"
+                  startId="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source.Outputs[Flat File Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{CE61296B-5AD4-4EF2-8879-665AC4174816}"
+          DTS:ObjectName="{CE61296B-5AD4-4EF2-8879-665AC4174816}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::FullFilePath" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="173.6,41.6"
+          Id="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile"
+          TopLeft="8.46665947271752,7.59999801119181" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="204.8,104"
+          Size="204.8,147.2"
+          Id="Package\FELC_ProcessAllCSV"
+          TopLeft="104.999994263053,92.7333326884771" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="151.2,41.6"
+          Id="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Flat File Source"
+          TopLeft="105.499994536241,55.7666663171186" />
+        <NodeLayout
+          Size="152.8,41.6"
+          Id="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\Derived Column"
+          TopLeft="155.833324818976,192.399998662074" />
+        <EdgeLayout
+          Id="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile.Paths[Flat File Source Output]"
+          TopLeft="181.099994536241,97.3666663171186">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="51.1333302827346,95.0333323449559"
+              Start="0,0"
+              End="51.1333302827346,87.5333323449559">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.516666172478" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,43.516666172478"
+                    Point2="0,47.516666172478"
+                    Point3="4,47.516666172478" />
+                  <mssgle:LineSegment
+                    End="47.1333302827346,47.516666172478" />
+                  <mssgle:CubicBezierSegment
+                    Point1="47.1333302827346,47.516666172478"
+                    Point2="51.1333302827346,47.516666172478"
+                    Point3="51.1333302827346,51.516666172478" />
+                  <mssgle:LineSegment
+                    End="51.1333302827346,87.5333323449559" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\OLE DB Destination"
+          TopLeft="329.999981969596,412.533330464628" />
+        <EdgeLayout
+          Id="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile.Paths[Derived Column Output]"
+          TopLeft="232.233324818976,233.999998662074">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="183.36665715062,178.533331802554"
+              Start="0,0"
+              End="183.36665715062,171.033331802554">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,85.2666659012768" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,85.2666659012768"
+                    Point2="0,89.2666659012768"
+                    Point3="4,89.2666659012768" />
+                  <mssgle:LineSegment
+                    End="179.36665715062,89.2666659012768" />
+                  <mssgle:CubicBezierSegment
+                    Point1="179.36665715062,89.2666659012768"
+                    Point2="183.36665715062,89.2666659012768"
+                    Point3="183.36665715062,93.2666659012768" />
+                  <mssgle:LineSegment
+                    End="183.36665715062,171.033331802554" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\FELC_ProcessAllCSV\DFT_LoadSingleFile\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
