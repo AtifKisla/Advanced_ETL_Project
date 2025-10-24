@@ -33,8 +33,5 @@ Proje dört ana paketten oluşur; her biri ETL sürecinin kritik bir aşamasın�
    - `Dim_Product` ve `Dim_Date` tablolarına Lookup ile bağlanır, surrogate key değerlerini getirir.  
    - `TotalAmount = Quantity * Price` hesabını Derived Column ile yapar.  
    - Sonuç verilerini fact tabloya aktarır.
-
----
-
 ## ETL Akış Özeti
 
